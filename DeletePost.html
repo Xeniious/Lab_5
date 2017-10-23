@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Post Viewing</title>
+    </head>
+
+    <body>
+		<form action="DeletePosts.php">
+        Delete?<br>
+		<?php
+			$mysqli = new mysqli("mysql.eecs.ku.edu", "csmith", 'P@$$word123', "csmith");
+			$posts = $mysqli->query("SELECT content FROM Posts");
+			//$users = $mysqli->query("SELECT user_id FROM Users");
+			
+			if($posts->num_rows>0)
+			{
+				while($data = $posts->fetch_array())
+				{
+					echo "
+						<table>
+						<tr>
+							<td>".$data['author_id']."</td>
+							<td>".$data['content']."</td>
+							$checkbox = '<input type="checkbox" id="'.$data['post_id'].'"</input>';
+							<td>".$checkbox."</td>
+						</tr>
+						";
+				}
+			}
+		?>
+		<input type="submit" value = "Submit">
+		</form>
+    </body>
+
+</html>

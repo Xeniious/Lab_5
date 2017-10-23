@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Post Viewing</title>
+    </head>
+
+    <body>
+		<form action="ViewUserPosts.php">
+        Please select a user who's posts you would like to view.<br>
+		<?php
+			$mysqli = new mysqli("mysql.eecs.ku.edu", "csmith", 'P@$$word123', "csmith");
+			$users = "SELECT user_id FROM Users";
+			$select='<select name="select">';
+			while($aUser = users->fetch_array())
+			{
+				$select.='<option value="'.$aUser['user_id'].'">'.$aUser['user_id'].'</option>';
+			}
+			$select.='</select>';
+			echo $select;
+		?>
+		<input type="submit" value = "Submit">
+		</form>
+    </body>
+
+</html>
